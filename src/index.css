@@ -1,13 +1,107 @@
+html {
+    height: 100%;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#root {
+    min-height: 100%;
+    background: url('./images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+}
+
+header {
+    flex: 1 1 100%;
+    font-size: 3em;
+    text-align: center;
+    text-shadow: 2px 2px 1px rgba(150, 150, 150, 0.75);
+}
+
+.card {
+    padding: 24px 32px;
+    display: flex;
+    flex-flow: row wrap;
+    height: 400px;
+    max-width: 600px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.1);
+    background: rgb(12, 30, 80);
+    background: linear-gradient( 0deg, rgba(12, 30, 80, 0.85) 0%, rgba(12, 30, 80, 0.55) 100%);
+    box-sizing: border-box;
+}
+
+.card-top-section {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 100%;
+}
+
+.info-section {
+    flex: 1 1 100%;
+}
+
+.info-section-temperature {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.buttons-section {
+    display: flex;
+    margin: 24px 0;
+    justify-content: center;
+}
+
+.forecast-button {
+    height: 36px;
+    margin: 0 4px;
+    padding: 0 12px;
+    font-size: 20px;
+    line-height: 36px;
+    color: #fff;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.forecast-button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.text-temperature-big {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.text-temperature span {
+    font-size: 12px;
+    color: rgba(200, 200, 200, 0.55);
 }
