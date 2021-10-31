@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import { forecastDaily } from '../api/Forecast'
 
-const today = 'today'
-const tomorrow = 'tomorrow'
-const dayAfterTomorrow = 'day after tomorrow'
-
 export const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [state, setState] = useState({
@@ -18,7 +14,7 @@ export const Card = () => {
   });
 
   useEffect(() => {
-    getWeather(today)
+    getWeather(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -37,9 +33,9 @@ export const Card = () => {
       <div className="card-top-section">
         <h2>{state.city.toUpperCase()}</h2>
         <div className="buttons-section">
-          <button className="forecast-button" onClick={() => getWeather(today)}>Today</button>
-          <button className="forecast-button" onClick={() => getWeather(tomorrow)}>Tomorrow</button>
-          <button className="forecast-button" onClick={() => getWeather(dayAfterTomorrow)}>Day After Tomorrow</button>
+          <button className="forecast-button" onClick={() => getWeather(1)}>Today</button>
+          <button className="forecast-button" onClick={() => getWeather(2)}>Tomorrow</button>
+          <button className="forecast-button" onClick={() => getWeather(3)}>Day After Tomorrow</button>
         </div>
       </div>
       <div className="info-section">
@@ -50,7 +46,7 @@ export const Card = () => {
             <img src={state.icon_url} alt={state.city} />
             <div className="info-section-temperature">
               <p className="text-temperature">{state.mintemp_c}<br /><span>Min</span></p>
-              {state.forecast === today ?
+              {state.forecast === 1 ?
                 <p className="text-temperature text-temperature-big">{state.temp_current}<br /><span>Current</span></p> :
                 <p className="text-temperature text-temperature-big">{state.temp_avg}<br /><span>Average</span></p>
               }
