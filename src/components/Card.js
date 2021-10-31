@@ -15,7 +15,7 @@ export const Card = () => {
     const data = await getForecast(forecast)
     setIsLoading(false);
     setDataWeather({
-      ...dataWeather,
+      dataWeather,
       ...data,
     })
   }
