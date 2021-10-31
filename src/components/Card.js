@@ -3,15 +3,7 @@ import { forecastDaily } from '../api/Forecast'
 
 export const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [state, setState] = useState({
-    forecast: '',
-    city: "",
-    temp_current: "",
-    temp_avg: "",
-    mintemp_c: "",
-    maxtemp_c: "",
-    icon_url: "",
-  });
+  const [state, setState] = useState({});
 
   useEffect(() => {
     getWeather(1)
@@ -31,7 +23,7 @@ export const Card = () => {
   return (
     <div className="card">
       <div className="card-top-section">
-        <h2>{state.city.toUpperCase()}</h2>
+        <h2>{state.city?.toUpperCase()}</h2>
         <div className="buttons-section">
           <button className="forecast-button" onClick={() => getWeather(1)}>Today</button>
           <button className="forecast-button" onClick={() => getWeather(2)}>Tomorrow</button>
