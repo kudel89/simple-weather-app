@@ -28,16 +28,14 @@ const forecastDaily = async (forecast) => {
     const data = await response.data
     console.log('data ==> ', data)
     const forecastday = days - 1;
-    const temp_avg = data.forecast.forecastday[forecastday].day.avgtemp_c
-    const mintemp_c = data.forecast.forecastday[forecastday].day.mintemp_c
-    const maxtemp_c = data.forecast.forecastday[forecastday].day.maxtemp_c
+    const { avgtemp_c, mintemp_c, maxtemp_c } = data.forecast.forecastday[forecastday].day
     const icon_url = data.forecast.forecastday[forecastday].day.condition.icon
 
     const newData = {
         forecast: forecast,
         city: data.location.name,
         temp_current: data.current.temp_c,
-        temp_avg: temp_avg,
+        temp_avg: avgtemp_c,
         mintemp_c: mintemp_c,
         maxtemp_c: maxtemp_c,
         icon_url: icon_url,
