@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import { forecastDaily } from '../api/Forecast'
+import { getForecast } from '../api/Forecast'
 
 export const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [state, setState] = useState({});
+  const [dataWeather, setDataWeather] = useState({});
 
   useEffect(() => {
-    getWeather(1)
+    showForecast(1)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const getWeather = async (forecast) => {
+  const showForecast = async (forecast) => {
     setIsLoading(true);
-    const data = await forecastDaily(forecast)
+    const data = await getForecast(forecast)
     setIsLoading(false);
-    setState({
-      ...state,
+    setDataWeather({
+      ...dataWeather,
       ...data,
     })
   }
@@ -23,11 +23,11 @@ export const Card = () => {
   return (
     <div className="card">
       <div className="card-top-section">
-        <h2>{state.city?.toUpperCase()}</h2>
+        <h2>{dataWeather.city?.toUpperCase()}</h2>
         <div className="buttons-section">
-          <button className="forecast-button" onClick={() => getWeather(1)}>Today</button>
-          <button className="forecast-button" onClick={() => getWeather(2)}>Tomorrow</button>
-          <button className="forecast-button" onClick={() => getWeather(3)}>Day After Tomorrow</button>
+          <button className="forecast-button" onClick={() => showForecast(1)}>Today</button>
+          <button className="forecast-button" onClick={() => showForecast(2)}>Tomorrow</button>
+          <button className="forecast-button" onClick={() => showForecast(3)}>Day After Tomorrow</button>
         </div>
       </div>
       <div className="info-section">
@@ -35,14 +35,14 @@ export const Card = () => {
           <p>Loading...</p>
         ) : (
           <>
-            <img src={state.icon_url} alt={state.city} />
+            <img src={dataWeather.icon_url} alt={dataWeather.city} />
             <div className="info-section-temperature">
-              <p className="text-temperature">{state.mintemp_c}<br /><span>Min</span></p>
-              {state.forecast === 1 ?
-                <p className="text-temperature text-temperature-big">{state.temp_current}<br /><span>Current</span></p> :
-                <p className="text-temperature text-temperature-big">{state.temp_avg}<br /><span>Average</span></p>
+              <p className="text-temperature">{dataWeather.mintemp_c}<br /><span>Min</span></p>
+              {dataWeather.forecast === 1 ?
+                <p className="text-temperature text-temperature-big">{dataWeather.temp_current}<br /><span>Current</span></p> :
+                <p className="text-temperature text-temperature-big">{dataWeather.temp_avg}<br /><span>Average</span></p>
               }
-              <p className="text-temperature">{state.maxtemp_c}<br /><span>Max</span></p>
+              <p className="text-temperature">{dataWeather.maxtemp_c}<br /><span>Max</span></p>
             </div>
           </>
         )}
