@@ -40,9 +40,9 @@ export const Card = () => {
     <div className="card">
       <div className="card-top-section">
         <h2>{dataWeather?.location?.name.toUpperCase()}</h2>
-        <form>
-          <input onChange={handleChange} value={city} />
-          <button onClick={onSubmit}>Search</button>
+        <form className="form">
+          <input className="form-input" onChange={handleChange} value={city} />
+          <button className="form-search-btn" onClick={onSubmit}>Search</button>
         </form>
       </div>
       <div className="days-section">
