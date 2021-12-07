@@ -7,6 +7,11 @@ export const Card = () => {
   const [city, setCity] = useState('Одесса');
   const [dataWeather, setDataWeather] = useState({});
 
+  useEffect(() => {
+    showForecast(city)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const showForecast = async (city) => {
     setIsLoading(true);
     const data = await getForecast(city)
@@ -18,16 +23,7 @@ export const Card = () => {
   }
 
   const getDay = (date) => moment(date).format('dddd')
-
-  useEffect(() => {
-    showForecast(city)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleChange = (e) => {
-    setCity(e.target.value)
-  }
-
+  const handleChange = (e) => setCity(e.target.value)
   const onSubmit = (e) => {
     e.preventDefault()
     showForecast(city)
