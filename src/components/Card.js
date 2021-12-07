@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getForecast } from '../api/Forecast'
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 export const Card = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ export const Card = () => {
     })
   }
 
-  const getDay = (date) => moment(date).format('dddd')
+  const getWeekDay = date => DateTime.fromISO(date).setLocale('en').toLocaleString({ weekday: 'long' })
   const handleChange = (e) => setCity(e.target.value)
   const onSubmit = (e) => {
     e.preventDefault()
@@ -47,7 +47,7 @@ export const Card = () => {
               <React.Fragment key={index}>
                 <div className="info-section">
                   <div className="info-section-day">
-                    {index === 0 ? <p>Today</p> : <p>{getDay(item.date)}</p>}
+                    {index === 0 ? <p>Today</p> : <p>{getWeekDay(item.date)}</p>}
                     <img src={item.day.condition.icon} alt={item.day.condition.text} />
                   </div>
                   <div className="info-section-temperature">
