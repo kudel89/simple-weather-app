@@ -17,10 +17,7 @@ export const Card = () => {
     })
   }
 
-  const getDay = (date) => {
-    const day = moment(date).format('dddd')
-    return day
-  }
+  const getDay = (date) => moment(date).format('dddd')
 
   useEffect(() => {
     showForecast(city)
