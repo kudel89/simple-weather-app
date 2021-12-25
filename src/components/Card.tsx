@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { getForecast } from '../api/Forecast'
-import { DateTime } from 'luxon';
+import { DateTime } from 'luxon'
+
+interface IDataWeather{
+  [key: string]:any
+}
 
 export const Card = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [city, setCity] = useState('Одесса');
-  const [dataWeather, setDataWeather] = useState({});
+  const [dataWeather, setDataWeather] = useState<IDataWeather>({});
 
   useEffect(() => {
     showForecast(city)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const showForecast = async (city) => {
+  const showForecast = async (city: any) => {
     setIsLoading(true);
-    const data = await getForecast(city)
+    const data:any = await getForecast(city)
     setIsLoading(false);
     setDataWeather({
-      dataWeather,
+      ...dataWeather,
       ...data,
     })
   }
 
-  const getWeekDay = date => DateTime.fromISO(date).setLocale('en').toLocaleString({ weekday: 'long' })
-  const handleChange = (e) => setCity(e.target.value)
-  const onSubmit = (e) => {
+  const getWeekDay = (date:any) => DateTime.fromISO(date).setLocale('en').toLocaleString({ weekday: 'long' })
+  const handleChange = (e:any) => setCity(e.target.value)
+  const onSubmit = (e:any) => {
     e.preventDefault()
     showForecast(city)
   }
@@ -42,7 +46,7 @@ export const Card = () => {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          dataWeather?.forecast?.forecastday?.map((item, index) => {
+          dataWeather?.forecast?.forecastday?.map((item:any, index:any) => {
             return (
               <React.Fragment key={index}>
                 <div className="info-section">
